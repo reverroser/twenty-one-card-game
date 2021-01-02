@@ -2,6 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Game rules
+
+The game is simple. Adds one card at a time from a deck to the board. If the
+total sums to 21 then you win and if you go over 21 you go bust! The aim is to
+have as many cards on the board before you go bust. This number of cards on
+the table is recorded as your high score. All face cards have a score of 10 and
+Ace is 11.
+
 ## Available Scripts
 
 In the project directory, you can run:
