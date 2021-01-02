@@ -1,14 +1,24 @@
 :root {
   --primary-color: #266EF1;
+  --dark-primary-color: #093890;
   --light-primary-color: #E9F0FD;
   --text-primary-color: #152935;
   --text-secondary-color: #3C4043;
   --body-font: 'Inter', sans-serif;
   --title-font: 'Rubik', sans-serif;
+  --spacing-tiny: 8px;
+  --spacing-small: 16px;
   --spacing-medium: 24px;
   --spacing-large: 32px;
   --spacing-giant: 64px;
   --card-size: 226px;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
 }
 
 body {
