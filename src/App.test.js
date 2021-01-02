@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders inital page succesfully', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const emptyStateElement = screen.getByText(/Draw a card to start the game/i);
+  const ctaElement = screen.getByText(/Draw card/i);
+  expect(emptyStateElement).toBeInTheDocument();
+  expect(ctaElement).toBeInTheDocument();
 });
