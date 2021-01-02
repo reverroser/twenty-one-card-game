@@ -4,8 +4,11 @@
   --light-primary-color: #E9F0FD;
   --text-primary-color: #152935;
   --text-secondary-color: #3C4043;
+  --success-color: #32CD32;
+  --error-color: #FF5733;
   --body-font: 'Inter', sans-serif;
   --title-font: 'Rubik', sans-serif;
+  --spacing-micro: 4px;
   --spacing-tiny: 8px;
   --spacing-small: 16px;
   --spacing-medium: 24px;

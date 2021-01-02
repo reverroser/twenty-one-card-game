@@ -57,6 +57,24 @@
   margin-bottom: var(--spacing-medium);
 }
 
+.current-score span {
+  margin-left: var(--spacing-micro);
+}
+
+.loser-message,
+.winner-message {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.loser-message {
+  color: var(--error-color);
+}
+
+.winner-message {
+  color: var(--success-color);
+}
+
 .btn {
   padding: var(--spacing-tiny) var(--spacing-small);
   outline: 0;

@@ -6,18 +6,23 @@ const HIGH_SCORE_KEY = 'high_score';
 const ACE_CARD_KEY = 'ACE';
 const FACE_CARDS_KEYS = ['KING', 'QUEEN', 'JACK'];
 const DECK_API_URL = 'https://deckofcardsapi.com/api/deck';
+const MAX_SCORE = 21;
 
 function App() {
   const [highScore, setHighScore] = useState(localStorage.getItem(HIGH_SCORE_KEY) || 0);
   const [cards, setCards] = useState([]);
   const [deckId, setDeckId] = useState();
   const [currentScore, setCurrentScore] = useState(0);
+  const [won, setWon] = useState(false);
+  const [lost, setLost] = useState(false);
 
   useEffect(() => {
-    fetch(`${DECK_API_URL}/new/`)
-      .then((response) => response.json())
-      .then(({ deck_id }) => setDeckId(deck_id));
+    getNewDeck();
   }, []);
+
+  const getNewDeck = () => fetch(`${DECK_API_URL}/new/`)
+    .then((response) => response.json())
+    .then(({ deck_id }) => setDeckId(deck_id));
 
   const handleDrawCard = async () => {
     // Re shuffle deck
@@ -35,14 +40,38 @@ function App() {
     } else if (FACE_CARDS_KEYS.includes(newCard.value)) {
       cardScore = 10;
     }
+    const newScore = currentScore + cardScore;
+    setCurrentScore(newScore);
 
-    setCards([
+    // Upsert new card
+    const newCards = [
       ...cards,
       newCard,
-    ]);
+    ];
+    setCards(newCards);
 
-    setCurrentScore(currentScore + cardScore);
-  }
+    if (newScore === MAX_SCORE) {
+      setWon(true);
+      setLost(false);
+
+      // Sets the new high score
+      if (highScore < newCards.length) {
+        setHighScore(newCards.length);
+        localStorage.setItem(HIGH_SCORE_KEY, newCards.length);
+      }
+    } else if (newScore > MAX_SCORE) {
+      setWon(false);
+      setLost(true);
+    }
+  };
+
+  const handleRestart = () => {
+    getNewDeck();
+    setWon(false);
+    setLost(false);
+    setCards([]);
+    setCurrentScore(0);
+  };
 
   return (
     <div className="app">
@@ -59,9 +88,28 @@ function App() {
       </div>
       <div className="footer">
         <div className="current-score">
-          Current Score: <span>{currentScore}</span>
+          {(!won && !lost) && (
+            <>
+              Current Score:
+              <span>{currentScore}</span>
+            </>
+          )}
+          {lost && (
+            <div className="loser-message">
+              You lost 😔
+            </div>
+          )}
+          {won && (
+            <span className="winner-message">
+              You won 🎉
+            </span>
+          )}
         </div>
-        <button className="btn btn-primary" onClick={handleDrawCard}>Draw card</button>
+        {!won && !lost ? (
+          <button className="btn btn-primary" onClick={handleDrawCard}>Draw card</button>
+        ) : (
+          <button className="btn btn-primary" onClick={handleRestart}>Restart game</button>
+        )}
       </div>
     </div>
   );
