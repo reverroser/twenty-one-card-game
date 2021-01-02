@@ -5,8 +5,10 @@
   --text-secondary-color: #3C4043;
   --body-font: 'Inter', sans-serif;
   --title-font: 'Rubik', sans-serif;
+  --spacing-medium: 24px;
   --spacing-large: 32px;
   --spacing-giant: 64px;
+  --card-size: 226px;
 }
 
 body {

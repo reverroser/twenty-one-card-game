@@ -28,3 +28,16 @@
 .score span {
   color: var(--text-primary-color);
 }
+
+.gameArea {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-size), 1fr));
+  grid-column-gap: var(--spacing-medium);
+  padding: var(--spacing-large);
+}
+
+.gameArea img {
+  width: 100%;
+  max-width: var(--card-size);
+}
