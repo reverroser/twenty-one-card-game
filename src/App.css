@@ -45,6 +45,14 @@
   max-width: var(--card-size);
 }
 
+.empty-state {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--text-secondary-color);
+  margin-top: var(--spacing-giant);
+}
+
 .footer {
   padding: var(--spacing-large);
   display: flex;

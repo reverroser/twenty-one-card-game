@@ -84,7 +84,9 @@ function App() {
         </div>
       </div>
       <div className="gameArea">
-        {cards.map((card, i) => <img key={i} src={card.image} alt={card.code} />)}
+        {cards.length ? cards.map((card, i) => <img key={i} src={card.image} alt={card.code} />) : (
+          <div className="empty-state">Draw a card to start the game</div>
+        )}
       </div>
       <div className="footer">
         <div className="current-score">
